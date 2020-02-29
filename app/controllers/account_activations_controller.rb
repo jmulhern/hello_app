@@ -1,5 +1,12 @@
-# frozen_string_literal: true
-
 class AccountActivationsController < ApplicationController
-  def edit; end
+
+  def edit
+    user = User.find_by(email: params[:email])
+    if user&.authenticated?(:activation, params[:id])
+      # activate user
+    else
+      # invalid link
+    end
+  end
+
 end
